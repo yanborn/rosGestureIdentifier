@@ -31,7 +31,7 @@ gestureIdentifier::runTfLoop()
       ROS_ERROR_STREAM("Error transforming tf.");
     }
 
-
+    loopRate.sleep();
   }
 
   return 0;
