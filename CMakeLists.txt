@@ -10,6 +10,7 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -134,6 +135,7 @@ catkin_package(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_node
     src/main.cpp
+    src/gestureIdentifier.cpp
 )
 
 ## Rename C++ executable without prefix
