@@ -20,7 +20,7 @@ gestureIdentifier::startIdentifier()
 bool
 gestureIdentifier::runTfLoop()
 {
-  ros::Rate loopRate(2.0);
+  ros::Rate loopRate(1);
   std_msgs::String msg;
   std::stringstream ss;
 
@@ -43,14 +43,12 @@ gestureIdentifier::runTfLoop()
         ss << "rightHighlighted";
         msg.data = ss.str();
         gesturePublisher.publish(msg);
-        //gesturePublisher.publish("rightHighlighted");
       }
       else if(transform.getOrigin().y() > 0.2)
       {
         ss << "sliderHighlighted";
         msg.data = ss.str();
         gesturePublisher.publish(msg);
-        //gesturePublisher.publish("sliderHighlighted");
       }
     } catch (tf::TransformException &e) {
       ROS_ERROR_STREAM("Error transforming tf.");
