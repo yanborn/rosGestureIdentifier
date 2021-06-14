@@ -21,6 +21,8 @@ bool
 gestureIdentifier::runTfLoop()
 {
   ros::Rate loopRate(10.0);
+  std_msgs::String msg;
+  std::stringstream ss;
 
   while(ros::ok())
   {
@@ -28,7 +30,26 @@ gestureIdentifier::runTfLoop()
     try {
       tfListener.lookupTransform("/openni_depth_frame", "/left_hand_1", ros::Time(0), transform);
 
-      ROS_INFO_STREAM("X: " << transform.getOrigin().x() << "\n Y: " <<  transform.getOrigin().y());
+      if(transform.getOrigin().y() <= -0.2)
+      {
+        ss << "leftHighlighted";
+        msg.data = ss.str();
+        gesturePublisher.publish(msg);
+      }
+      else if(transform.getOrigin().y() > -0.1 && transform.getOrigin().y() < 0.1)
+      {
+        ss << "rightHighlighted";
+        msg.data = ss.str();
+        gesturePublisher.publish(msg);
+        //gesturePublisher.publish("rightHighlighted");
+      }
+      else if(transform.getOrigin().y() > 0.2)
+      {
+        ss << "sliderHighlighted";
+        msg.data = ss.str();
+        gesturePublisher.publish(msg);
+        //gesturePublisher.publish("sliderHighlighted");
+      }
     } catch (tf::TransformException &e) {
       ROS_ERROR_STREAM("Error transforming tf.");
     }
