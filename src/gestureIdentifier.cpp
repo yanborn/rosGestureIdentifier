@@ -26,6 +26,8 @@ gestureIdentifier::runTfLoop()
 
   while(ros::ok())
   {
+    ss.str("");
+
     tf::StampedTransform transform;
     try {
       tfListener.lookupTransform("/openni_depth_frame", "/left_hand_1", ros::Time(0), transform);
