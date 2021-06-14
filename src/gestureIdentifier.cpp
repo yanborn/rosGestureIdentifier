@@ -12,7 +12,7 @@ bool
 gestureIdentifier::startIdentifier()
 {
   ros::NodeHandle nh;
-  gesturePublisher = nh.advertise<std_msgs::String>("gestureGui", 1000);
+  gesturePublisher = nh.advertise<std_msgs::String>("gestureGui", 1);
 
   return runTfLoop();
 }
@@ -20,7 +20,7 @@ gestureIdentifier::startIdentifier()
 bool
 gestureIdentifier::runTfLoop()
 {
-  ros::Rate loopRate(10.0);
+  ros::Rate loopRate(1.0);
   std_msgs::String msg;
   std::stringstream ss;
 
