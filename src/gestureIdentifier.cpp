@@ -20,7 +20,7 @@ gestureIdentifier::startIdentifier()
 bool
 gestureIdentifier::runTfLoop()
 {
-  ros::Rate loopRate(1.0);
+  ros::Rate loopRate(2.0);
   std_msgs::String msg;
   std::stringstream ss;
 
