@@ -27,7 +27,7 @@ gestureIdentifier::startIdentifier()
 bool
 gestureIdentifier::runTfLoop()
 {
-  ros::Rate loopRate(1);
+  ros::Rate loopRate(0.2);
 
   while(ros::ok())
   {
@@ -161,7 +161,7 @@ gestureIdentifier::checkUpDown()
       msg.data = ss.str();
       gesturePublisher.publish(msg);
     }
-    else if (sliderIsClicked && (transform.getOrigin().z() < -0.3)){
+    else if (sliderIsClicked && (transform.getOrigin().z() < -0.1)){
       ROS_INFO_STREAM("Slider down detected");
       ss << "sliderDown";
       msg.data = ss.str();
