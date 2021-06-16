@@ -169,7 +169,6 @@ gestureIdentifier::checkUpDown()
     }
     else {
       ROS_INFO_STREAM("No up/down detected. Resetting the click");
-      sliderIsClicked = !sliderIsClicked;
     }
 
 }
