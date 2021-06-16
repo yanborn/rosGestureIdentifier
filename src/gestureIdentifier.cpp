@@ -41,20 +41,6 @@ gestureIdentifier::runTfLoop()
       checkHighlight();
     }
 
-/*
-    std_msgs::String msg;
-    std::stringstream ss;
-
-    tf::StampedTransform transform;
-
-    try {
-      tfListener.lookupTransform("/openni_depth_frame", "/left_hand_1", ros::Time(0), transform);
-
-      ROS_INFO_STREAM("X: " << transform.getOrigin().x() << "\n Y: " << transform.getOrigin().y() << "\n Z: " << transform.getOrigin().z());
-    } catch (tf::TransformException &e) {
-      ROS_ERROR_STREAM("Error transforming left hand tf for highlight check.");
-    }*/
-
     ros::spinOnce();
 
     loopRate.sleep();
@@ -135,7 +121,7 @@ gestureIdentifier::checkClick()
       gesturePublisher.publish(msg);
       rightDropdownIsClicked = !rightDropdownIsClicked;
     }
-    else if (sliderIsHighlighted && (transform.getOrigin().x() > 0.7)){
+    else if (sliderIsHighlighted && (transform.getOrigin().x() < 0.7)){
       ROS_INFO_STREAM("Click on slider detected");
       ss << "sliderClicked";
       msg.data = ss.str();
