@@ -27,7 +27,7 @@ gestureIdentifier::startIdentifier()
 bool
 gestureIdentifier::runTfLoop()
 {
-  ros::Rate loopRate(2);
+  ros::Rate loopRate(1.5);
 
   while(ros::ok())
   {
