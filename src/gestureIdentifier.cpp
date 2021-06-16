@@ -31,7 +31,7 @@ gestureIdentifier::runTfLoop()
 
   while(ros::ok())
   {
-    /*if(leftDropdownIsClicked || rightDropdownIsClicked || sliderIsClicked) {
+    if(leftDropdownIsClicked || rightDropdownIsClicked || sliderIsClicked) {
       checkUpDown();
     }
     else if(leftDropdownIsHighlighted || rightDropdownIsHighlighted || sliderIsHighlighted) {
@@ -40,9 +40,8 @@ gestureIdentifier::runTfLoop()
     else {
       checkHighlight();
     }
-    */
 
-
+/*
     std_msgs::String msg;
     std::stringstream ss;
 
@@ -54,7 +53,7 @@ gestureIdentifier::runTfLoop()
       ROS_INFO_STREAM("X: " << transform.getOrigin().x() << "\n Y: " << transform.getOrigin().y() << "\n Z: " << transform.getOrigin().z());
     } catch (tf::TransformException &e) {
       ROS_ERROR_STREAM("Error transforming left hand tf for highlight check.");
-    }
+    }*/
 
     ros::spinOnce();
 
@@ -122,21 +121,21 @@ gestureIdentifier::checkClick()
     return;
   }
 
-    if(leftDropdownIsHighlighted && (transform.getOrigin().x() > 0.5)) {
+    if(leftDropdownIsHighlighted && (transform.getOrigin().x() < 0.7)) {
       ROS_INFO_STREAM("Click on left dropdown detected");
       ss << "leftClicked";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
       leftDropdownIsClicked = !leftDropdownIsClicked;
     }
-    else if (rightDropdownIsHighlighted && (transform.getOrigin().x() > 0.5)){
+    else if (rightDropdownIsHighlighted && (transform.getOrigin().x() < 0.7)){
       ROS_INFO_STREAM("Click on right dropdown detected");
       ss << "rightClicked";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
       rightDropdownIsClicked = !rightDropdownIsClicked;
     }
-    else if (sliderIsHighlighted && (transform.getOrigin().x() > 0.5)){
+    else if (sliderIsHighlighted && (transform.getOrigin().x() > 0.7)){
       ROS_INFO_STREAM("Click on slider detected");
       ss << "sliderClicked";
       msg.data = ss.str();
@@ -163,13 +162,13 @@ gestureIdentifier::checkUpDown()
     return;
   }
 
-    if(sliderIsClicked && (transform.getOrigin().z() > 0.2)) {
+    if(sliderIsClicked && (transform.getOrigin().z() > 0.7)) {
       ROS_INFO_STREAM("Click on left dropdown detected");
       ss << "sliderUp";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
     }
-    else if (sliderIsClicked && (transform.getOrigin().z() < -0.2)){
+    else if (sliderIsClicked && (transform.getOrigin().z() < -0.7)){
       ROS_INFO_STREAM("Click on right dropdown detected");
       ss << "sliderDown";
       msg.data = ss.str();
