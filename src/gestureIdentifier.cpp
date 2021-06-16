@@ -113,21 +113,21 @@ gestureIdentifier::checkClick()
       ss << "leftClicked";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
-      leftDropdownIsClicked = !leftDropdownIsClicked;
+      leftDropdownIsClicked = true;
     }
     else if (rightDropdownIsHighlighted && (transform.getOrigin().x() < 0.7)){
       ROS_INFO_STREAM("Click on right dropdown detected");
       ss << "rightClicked";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
-      rightDropdownIsClicked = !rightDropdownIsClicked;
+      rightDropdownIsClicked = true;
     }
     else if (sliderIsHighlighted && (transform.getOrigin().x() < 0.7)){
       ROS_INFO_STREAM("Click on slider detected");
       ss << "sliderClicked";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
-      sliderIsClicked = !sliderIsClicked;
+      sliderIsClicked = true;
     }
     else {
       ROS_INFO_STREAM("No click detected");
