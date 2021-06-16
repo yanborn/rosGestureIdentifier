@@ -82,7 +82,7 @@ gestureIdentifier::checkHighlight()
   }
   else if(transform.getOrigin().y() > 0.2)
   {
-    ROS_INFO_STREAM("Highlight on slider dropdown detected");
+    ROS_INFO_STREAM("Highlight on slider detected");
     ss << "sliderHighlighted";
     msg.data = ss.str();
     gesturePublisher.publish(msg);
@@ -150,13 +150,13 @@ gestureIdentifier::checkUpDown()
   }
 
     if(sliderIsClicked && (transform.getOrigin().z() > 0.7)) {
-      ROS_INFO_STREAM("Click on left dropdown detected");
+      ROS_INFO_STREAM("Slider Up detected");
       ss << "sliderUp";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
     }
     else if (sliderIsClicked && (transform.getOrigin().z() < -0.7)){
-      ROS_INFO_STREAM("Click on right dropdown detected");
+      ROS_INFO_STREAM("Slider down detected");
       ss << "sliderDown";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
