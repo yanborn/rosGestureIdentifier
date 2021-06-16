@@ -70,7 +70,9 @@ gestureIdentifier::checkHighlight()
     ss << "leftHighlighted";
     msg.data = ss.str();
     gesturePublisher.publish(msg);
-    leftDropdownIsHighlighted = !leftDropdownIsHighlighted;
+    leftDropdownIsHighlighted = true;
+    rightDropdownIsHighlighted = false;
+    sliderIsHighlighted = false;
   }
   else if(transform.getOrigin().y() > -0.1 && transform.getOrigin().y() < 0.1)
   {
@@ -78,7 +80,9 @@ gestureIdentifier::checkHighlight()
     ss << "rightHighlighted";
     msg.data = ss.str();
     gesturePublisher.publish(msg);
-    rightDropdownIsHighlighted = !leftDropdownIsHighlighted;
+    rightDropdownIsHighlighted = true;
+    leftDropdownIsHighlighted = false;
+    sliderIsHighlighted = false;
   }
   else if(transform.getOrigin().y() > 0.2)
   {
@@ -86,7 +90,9 @@ gestureIdentifier::checkHighlight()
     ss << "sliderHighlighted";
     msg.data = ss.str();
     gesturePublisher.publish(msg);
-    sliderIsHighlighted = !sliderIsHighlighted;
+    sliderIsHighlighted = true;
+    leftDropdownIsHighlighted = false;
+    rightDropdownIsHighlighted = false;
   }
   else {
     ROS_INFO_STREAM("No highlighting detected");
