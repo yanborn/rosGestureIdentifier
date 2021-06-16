@@ -155,13 +155,13 @@ gestureIdentifier::checkUpDown()
     return;
   }
 
-    if(sliderIsClicked && (transform.getOrigin().z() > 0.7)) {
+    if(sliderIsClicked && (transform.getOrigin().z() > 0.3)) {
       ROS_INFO_STREAM("Slider Up detected");
       ss << "sliderUp";
       msg.data = ss.str();
       gesturePublisher.publish(msg);
     }
-    else if (sliderIsClicked && (transform.getOrigin().z() < -0.7)){
+    else if (sliderIsClicked && (transform.getOrigin().z() < -0.3)){
       ROS_INFO_STREAM("Slider down detected");
       ss << "sliderDown";
       msg.data = ss.str();
