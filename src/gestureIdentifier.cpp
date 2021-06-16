@@ -37,7 +37,8 @@ gestureIdentifier::runTfLoop()
     else if(leftDropdownIsHighlighted || rightDropdownIsHighlighted || sliderIsHighlighted) {
       checkClick();
     }
-    else {
+
+    if(!leftDropdownIsClicked && !rightDropdownIsClicked && !sliderIsClicked) {
       checkHighlight();
     }
 
