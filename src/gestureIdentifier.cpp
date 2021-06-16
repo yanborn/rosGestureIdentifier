@@ -31,7 +31,7 @@ gestureIdentifier::runTfLoop()
 
   while(ros::ok())
   {
-    if(leftDropdownIsClicked || rightDropdownIsClicked || sliderIsClicked) {
+    if(sliderIsClicked) {
       checkUpDown();
     }
     else if(leftDropdownIsHighlighted || rightDropdownIsHighlighted || sliderIsHighlighted) {
