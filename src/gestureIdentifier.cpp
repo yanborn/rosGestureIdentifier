@@ -183,6 +183,13 @@ gestureIdentifier::checkUpDown()
     gesturePublisher.publish(msg);
     rightDropdownIsClicked = false;
   }
+  else if (sliderIsClicked && (transform.getOrigin().x() < 0.7)) {
+    ROS_INFO_STREAM("Slider clicked detected");
+    ss << "sliderClicked";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+    sliderIsClicked = false;
+  }
   else if (sliderIsClicked && (transform.getOrigin().z() < -0.1)){
     ROS_INFO_STREAM("Slider down detected");
     ss << "sliderDown";
