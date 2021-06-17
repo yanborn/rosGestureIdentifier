@@ -31,7 +31,7 @@ gestureIdentifier::runTfLoop()
 
   while(ros::ok())
   {
-    if(sliderIsClicked) {
+    if(leftDropdownIsClicked || rightDropdownIsClicked || sliderIsClicked) {
       checkUpDown();
     }
     else if(leftDropdownIsHighlighted || rightDropdownIsHighlighted || sliderIsHighlighted) {
@@ -155,20 +155,48 @@ gestureIdentifier::checkUpDown()
     return;
   }
 
-    if(sliderIsClicked && (transform.getOrigin().z() > 0.3)) {
-      ROS_INFO_STREAM("Slider Up detected");
-      ss << "sliderUp";
-      msg.data = ss.str();
-      gesturePublisher.publish(msg);
-    }
-    else if (sliderIsClicked && (transform.getOrigin().z() < -0.1)){
-      ROS_INFO_STREAM("Slider down detected");
-      ss << "sliderDown";
-      msg.data = ss.str();
-      gesturePublisher.publish(msg);
-    }
-    else {
-      ROS_INFO_STREAM("No up/down detected. Resetting the click");
-    }
+  if (leftDropdownIsClicked && (transform.getOrigin().z() < -0.1)){
+    ROS_INFO_STREAM("Left dropdown down detected");
+    ss << "leftDown";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+    leftDropdownIsClicked = false;
+  }
+  else if(leftDropdownIsClicked && (transform.getOrigin().z() > 0.3)) {
+    ROS_INFO_STREAM("Left dropdown Up detected");
+    ss << "leftUp";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+    leftDropdownIsClicked = false;
+  }
+  else if (rightDropdownIsClicked && (transform.getOrigin().z() < -0.1)){
+    ROS_INFO_STREAM("Right dropdown down detected");
+    ss << "rightDown";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+    rightDropdownIsClicked = false;
+  }
+  else if(rightDropdownIsClicked && (transform.getOrigin().z() > 0.3)) {
+    ROS_INFO_STREAM("Right dropdown Up detected");
+    ss << "rightUp";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+    rightDropdownIsClicked = false;
+  }
+  else if (sliderIsClicked && (transform.getOrigin().z() < -0.1)){
+    ROS_INFO_STREAM("Slider down detected");
+    ss << "sliderDown";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+  }
+  else if(sliderIsClicked && (transform.getOrigin().z() > 0.3)) {
+    ROS_INFO_STREAM("Slider Up detected");
+    ss << "sliderUp";
+    msg.data = ss.str();
+    gesturePublisher.publish(msg);
+  }
+  else {
+    ROS_INFO_STREAM("No up/down detected. Resetting the click");
+  }
 
 }
