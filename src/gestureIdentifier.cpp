@@ -1,6 +1,6 @@
 /**
  * @file gestureIdentifier.cpp
- * @brief Header file for gestureIdentifier class
+ * @brief Source file for gestureIdentifier class
  *
  * @author Yannick Volkenborn
  * @author Jan Dominik Wisker
