@@ -1,3 +1,12 @@
+/**
+ * @file gestureIdentifier.cpp
+ * @brief Header file for gestureIdentifier class
+ *
+ * @author Yannick Volkenborn
+ * @author Jan Dominik Wisker
+ * @author Saidjamol Akbarov
+ */
+
 #include "gestureIdentifier.h"
 
 #include <std_msgs/String.h>
@@ -47,7 +56,7 @@ gestureIdentifier::runTfLoop()
     loopRate.sleep();
   }
 
-  return 0;
+  return false;
 }
 
 void
