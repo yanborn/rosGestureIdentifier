@@ -1,3 +1,12 @@
+/**
+ * @file main.cpp
+ * @brief Main file to run the gesture identifier
+ *
+ * @author Yannick Volkenborn
+ * @author Jan Dominik Wisker
+ * @author Saidjamol Akbarov
+ */
+
 #include "gestureIdentifier.h"
 
 #include <ros/ros.h>
